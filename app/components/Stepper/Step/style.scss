@@ -1,0 +1,36 @@
+@import '../vars';
+
+.Stepper-step {
+	position: relative;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+	z-index: 3;
+	cursor: pointer;
+	transition: color 0.1s ease;
+
+	&.is-selected, &:hover {
+		color: $COLOR_ACTIVE;
+	}
+
+	span {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		font-weight: bold;
+	}
+
+	&:after {
+		content: '';
+		width: $STEP_SIZE;
+		height: $STEP_SIZE;
+		border: $LINE_WIDTH solid currentColor;
+		background-color: white;
+		border-radius: 50%;
+		display: block;
+		box-sizing: border-box;
+	}
+}

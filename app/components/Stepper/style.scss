@@ -1,0 +1,31 @@
+@import './vars';
+
+.Stepper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+	height: $HEIGHT;
+	color: $COLOR_INACTIVE;
+
+	&:before {
+		content: '';
+		position: absolute;
+		bottom: ($STEP_SIZE / 2) - ($LINE_WIDTH / 2);
+		height: $LINE_WIDTH;
+		background-color: currentColor;
+		left: 0;
+		z-index: 1;
+		right: 0;
+	}
+}
+
+.Stepper-bar {
+	position: absolute;
+	bottom: ($STEP_SIZE / 2) - ($LINE_WIDTH / 2);
+	height: $LINE_WIDTH;
+	background-color: $COLOR_ACTIVE;
+	left: 0;
+	z-index: 2;
+	transition: width 0.1s ease;
+}
