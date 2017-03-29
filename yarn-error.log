@@ -1,8 +1,8 @@
 Arguments: 
-  /Users/chrislawrence/.nvm/versions/node/v7.4.0/bin/node /usr/local/bin/yarn install
+  /Users/chrislawrence/.nvm/versions/node/v7.4.0/bin/node /usr/local/bin/yarn init
 
 PATH: 
-  /Users/chrislawrence/.nvm/versions/node/v7.4.0/bin:/Users/chrislawrence/.rvm/gems/ruby-2.2.0/bin:/Users/chrislawrence/.rvm/gems/ruby-2.2.0@global/bin:/Users/chrislawrence/.rvm/rubies/ruby-2.2.0/bin:/Applications/MAMP/bin/php/php5.6.10/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Users/chrislawrence/.rvm/bin:/Users/chrislawrence/Library/Android/sdk/tools:/Users/chrislawrence/Library/Android/sdk/platform-tools:/Users/chrislawrence/Library/Python/3.4/bin
+  /Users/chrislawrence/.nvm/versions/node/v7.4.0/bin:/Users/chrislawrence/.gcloud/platform/google_appengine:/Users/chrislawrence/.gcloud/bin:/Users/chrislawrence/.rvm/gems/ruby-2.1.1/bin:/Users/chrislawrence/.rvm/gems/ruby-2.1.1@global/bin:/Users/chrislawrence/.rvm/rubies/ruby-2.1.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/chrislawrence/.rvm/bin:/bin:/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 
 Yarn version: 
   0.16.1
@@ -30,18 +30,18 @@ npm manifest:
       }
     },
     "scripts": {
-      "start": "yarn gulp",
-      "test": "jest",
+      "start": "yarn watch & yarn browser",
+      "browser": "./node_modules/.bin/opn ./dist/index.html -- 'google chrome'",
+      "test": "./node_modules/.bin/jest",
       "flow": "./node_modules/.bin/flow",
       "watch": "./node_modules/.bin/gulp --gulpfile ./build/gulpfile.babel.js --env development",
-      "build": "./node_modules/.bin/gulp build --gulpfile ./build/gulpfile.babel.js --env production",
+      "build": "./node_modules/.bin/gulp build --gulpfile ./build/gulpfile.babel.js --env production"
     },
     "browserslist": [
       "last 3 Chrome versions"
     ],
     "version": "0.0.1",
     "devDependencies": {
-      "@kadira/storybook": "^2.21.0",
       "autoprefixer": "^6.7.2",
       "babel": "6.5.2",
       "babel-eslint": "^7.1.1",
@@ -50,22 +50,16 @@ npm manifest:
       "babel-plugin-transform-function-bind": "^6.22.0",
       "babel-preset-es2015": "6.18.0",
       "babel-preset-react": "^6.16.0",
-      "babel-preset-stage-0": "6.16.0",
       "babelify": "7.3.0",
       "browser-sync": "^2.11.0",
       "browserify": "13.1.1",
-      "compression": "^1.6.2",
-      "del": "^1.2.0",
-      "envify": "^3.4.1",
       "eslint": "^3.12.0",
       "eslint-plugin-flowtype": "^2.30.3",
       "eslint-plugin-import": "^2.2.0",
       "eslint-plugin-react": "^6.8.0",
       "event-stream": "^3.3.2",
-      "express": "^4.15.2",
       "flow-bin": "^0.39.0",
       "flow-interfaces-chrome": "^0.3.0",
-      "form-serialize": "^0.7.0",
       "gulp": "^3.9.0",
       "gulp-autoprefixer": "^3.1.0",
       "gulp-cssnano": "^2.1.0",
@@ -82,41 +76,17 @@ npm manifest:
       "gulp-streamify": "0.0.5",
       "gulp-uglify": "^1.2.0",
       "jest": "^18.1.0",
-      "moment": "^2.11.0",
-      "moment-duration-format": "^1.3.0",
-      "postcss-import": "^9.1.0",
-      "postcss-mixins": "^5.4.1",
-      "postcss-nested": "^1.0.0",
-      "postcss-simple-vars": "^3.0.0",
+      "opn-cli": "^3.1.0",
       "react-test-renderer": "^15.4.2",
       "require-dir": "^0.3.1",
-      "resolve": "^1.1.6",
       "stream-series": "^0.1.1",
-      "url-parse": "^1.0.5",
       "vinyl-buffer": "^1.0.0",
       "vinyl-source-stream": "^1.1.0",
-      "watchify": "^3.9.0",
-      "yargs": "^3.15.0"
+      "watchify": "^3.9.0"
     },
     "dependencies": {
-      "babel-plugin-transform-async-to-generator": "^6.22.0",
-      "babel-polyfill": "^6.22.0",
-      "firebase": "^3.7.1",
-      "firebase-admin": "^4.1.3",
-      "flow-bin": "^0.39.0",
-      "lodash.groupby": "^4.6.0",
-      "moment": "^2.18.0",
-      "normalizr": "^3.2.2",
-      "ramda": "^0.23.0",
       "react": "^15.3.2",
       "react-dom": "^15.3.2",
-      "react-redux": "^4.4.6",
-      "react-router-dom": "next",
-      "react-sortable-hoc": "^0.4.3",
-      "redux": "^3.6.0",
-      "redux-thunk": "^2.1.0",
-      "reselect": "^2.5.4",
-      "uuid": "^3.0.1"
     },
     "main": "src/index.js",
     "author": "chrslwrnc <cjlawrence89@gmail.com>",
@@ -2119,6 +2089,10 @@ Lockfile:
       strip-ansi "^3.0.0"
       supports-color "^2.0.0"
   
+  change-emitter@^0.1.2:
+    version "0.1.3"
+    resolved "https://registry.yarnpkg.com/change-emitter/-/change-emitter-0.1.3.tgz#731c9360913855f613dd256568d50f854a8806ac"
+  
   chokidar@^1.0.0, chokidar@^1.4.3, chokidar@^1.6.1, chokidar@1.6.1:
     version "1.6.1"
     resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-1.6.1.tgz#2f4447ab5e96e50fb3d789fd90d4c72e0e4c70c2"
@@ -2154,7 +2128,7 @@ Lockfile:
     dependencies:
       chalk "^1.1.3"
   
-  classnames@^2.2.3:
+  classnames, classnames@^2.2.3:
     version "2.2.5"
     resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
   
@@ -3682,7 +3656,7 @@ Lockfile:
     dependencies:
       loader-utils "~0.2.5"
   
-  file-type@^3.1.0, file-type@^3.8.0:
+  file-type@^3.1.0, file-type@^3.6.0, file-type@^3.8.0:
     version "3.9.0"
     resolved "https://registry.yarnpkg.com/file-type/-/file-type-3.9.0.tgz#257a078384d1db8087bc449d107d52a52672b9e9"
   
@@ -4013,6 +3987,10 @@ Lockfile:
   get-stdin@^4.0.1:
     version "4.0.1"
     resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-4.0.1.tgz#b968c6b0a04384324902e8bf1a5df32579a450fe"
+  
+  get-stdin@^5.0.1:
+    version "5.0.1"
+    resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-5.0.1.tgz#122e161591e21ff4c52530305693f20e6393a398"
   
   get-stream@^2.2.0:
     version "2.3.1"
@@ -4606,7 +4584,7 @@ Lockfile:
     version "2.16.3"
     resolved "https://registry.yarnpkg.com/hoek/-/hoek-2.16.3.tgz#20bb7403d3cea398e91dc4710a8ff1b8274a25ed"
   
-  hoist-non-react-statics@^1.0.3, hoist-non-react-statics@^1.2.0, hoist-non-react-statics@1.x.x:
+  hoist-non-react-statics@^1.0.0, hoist-non-react-statics@^1.0.3, hoist-non-react-statics@^1.2.0, hoist-non-react-statics@1.x.x:
     version "1.2.0"
     resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
   
@@ -6758,7 +6736,17 @@ Lockfile:
     version "1.1.0"
     resolved "https://registry.yarnpkg.com/openurl/-/openurl-1.1.0.tgz#e2f2189d999c04823201f083f0f1a7cd8903187a"
   
-  opn@4.0.2:
+  opn-cli:
+    version "3.1.0"
+    resolved "https://registry.yarnpkg.com/opn-cli/-/opn-cli-3.1.0.tgz#f819ae6cae0b411bd0149b8560fe6c88adad20f8"
+    dependencies:
+      file-type "^3.6.0"
+      get-stdin "^5.0.1"
+      meow "^3.7.0"
+      opn "^4.0.0"
+      temp-write "^2.1.0"
+  
+  opn@^4.0.0, opn@4.0.2:
     version "4.0.2"
     resolved "https://registry.yarnpkg.com/opn/-/opn-4.0.2.tgz#7abc22e644dff63b0a96d5ab7f2790c0f01abc95"
     dependencies:
@@ -7031,7 +7019,7 @@ Lockfile:
     version "0.2.0"
     resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-0.2.0.tgz#33ef30c5c77d4ea21c5a53869d91b56d8f2555e5"
   
-  pify@^2.0.0, pify@^2.3.0:
+  pify@^2.0.0, pify@^2.2.0, pify@^2.3.0:
     version "2.3.0"
     resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
   
@@ -7813,6 +7801,15 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/rechoir/-/rechoir-0.6.2.tgz#85204b54dba82d5742e28c96756ef43af50e3384"
     dependencies:
       resolve "^1.1.6"
+  
+  recompose:
+    version "0.22.0"
+    resolved "https://registry.yarnpkg.com/recompose/-/recompose-0.22.0.tgz#f099d18385882ca41d9eec891718dadddc3204ef"
+    dependencies:
+      change-emitter "^0.1.2"
+      fbjs "^0.8.1"
+      hoist-non-react-statics "^1.0.0"
+      symbol-observable "^1.0.4"
   
   redent@^1.0.0:
     version "1.0.0"
@@ -8736,7 +8733,7 @@ Lockfile:
       sax "~1.2.1"
       whet.extend "~0.9.9"
   
-  symbol-observable@^1.0.2:
+  symbol-observable@^1.0.2, symbol-observable@^1.0.4:
     version "1.0.4"
     resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.0.4.tgz#29bf615d4aa7121bdd898b22d4b3f9bc4e2aa03d"
   
@@ -8794,6 +8791,17 @@ Lockfile:
       block-stream "*"
       fstream "^1.0.2"
       inherits "2"
+  
+  temp-write@^2.1.0:
+    version "2.1.0"
+    resolved "https://registry.yarnpkg.com/temp-write/-/temp-write-2.1.0.tgz#59890918e0ef09d548aaa342f4bd3409d8404e96"
+    dependencies:
+      graceful-fs "^4.1.2"
+      mkdirp "^0.5.0"
+      os-tmpdir "^1.0.0"
+      pify "^2.2.0"
+      pinkie-promise "^2.0.0"
+      uuid "^2.0.1"
   
   tempfile@^1.0.0:
     version "1.1.1"
@@ -9690,9 +9698,9 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yeast/-/yeast-0.1.2.tgz#008e06d8094320c372dbc2f8ed76a0ca6c8ac419"
 
 Trace: 
-  SyntaxError: /Users/chrislawrence/Projects/Nanimokamo/mobtest/package.json: Unexpected token } in JSON at position 553
+  SyntaxError: /Users/chrislawrence/Projects/mtf/package.json: Unexpected token } in JSON at position 2139
       at JSON.parse (<anonymous>)
-      at /usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/lib/util/fs.js:271:57
+      at Object.<anonymous> (/usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/lib/util/fs.js:271:57)
       at Generator.next (<anonymous>)
       at step (/usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
       at /usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/node_modules/babel-runtime/helpers/asyncToGenerator.js:28:20

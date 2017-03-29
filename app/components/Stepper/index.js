@@ -2,6 +2,8 @@ import React from 'react';
 
 import Step from './Step';
 
+import * as state from './state.js';
+
 const validateSteps = (props, propName, componentName) => {
   if (props[propName].length < 2 || props[propName].length > 5)
     return new Error(
@@ -9,42 +11,32 @@ const validateSteps = (props, propName, componentName) => {
     );
 };
 
-const setCurrent = (current) => () => ({ current });
-const resetCurrent = () => ({ current: 0 });
-const next = (state, props) => ({
-  current: (state.current + 1) > (props.steps.length - 1)
-    ? state.current
-    : (state.current + 1),
-});
-const prev = (state) => ({
-  current: (state.current - 1) < 0
-    ? state.current
-    : (state.current - 1),
-});
-
 class Stepper extends React.Component {
+  static propTypes = {
+    steps: validateSteps,
+  }
+
   state = {
     current: 0,
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.steps.length !== this.props.steps.length) this.setState(resetCurrent);
+    // if the number of steps has changed, should probably reset current index
+    if (nextProps.steps.length !== this.props.steps.length) this.setState(state.resetCurrent);
   }
 
   handleClickStep = (index) => {
-    this.setState(setCurrent(index));
+    this.setState(state.setCurrent(index));
   }
 
-  renderStep = (label, i) => {
-    return (
-      <Step
-        key={i}
-        selected={(this.state.current) > (i - 1)}
-        label={label}
-        onClick={() => this.handleClickStep(i)}
-      />
-    );
-  }
+  renderStep = (label, i) => (
+    <Step
+      key={i}
+      selected={(this.state.current) > (i - 1)}
+      label={label}
+      onClick={() => this.handleClickStep(i)}
+    />
+  );
 
   render() {
     const { steps } = this.props;
@@ -60,10 +52,6 @@ class Stepper extends React.Component {
       </div>
     );
   }
-}
-
-Stepper.propTypes = {
-  steps: validateSteps,
 }
 
 export default Stepper;
