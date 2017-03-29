@@ -1,5 +1,7 @@
 import React from 'react';
 
+import * as styles from './styles.js';
+
 import Step from './Step';
 
 import * as state from './state.js';
@@ -15,6 +17,10 @@ class Stepper extends React.Component {
   static propTypes = {
     steps: validateSteps,
   }
+
+  // static defaultProps = {
+  //   steps: [ 'Design', 'Build', 'Deploy' ],
+  // }
 
   state = {
     current: 0,
@@ -43,13 +49,10 @@ class Stepper extends React.Component {
     const { current } = this.state;
 
     return (
-      <div className="Stepper">
-        <div
-          className="Stepper-bar"
-          style={{ width: `${ (100 / (steps.length - 1)) * (current) }%` }}
-        />
+      <styles.Wrapper>
+        <styles.Bar width={(100 / (steps.length - 1)) * (current)} />
         {steps.map(this.renderStep)}
-      </div>
+      </styles.Wrapper>
     );
   }
 }
