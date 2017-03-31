@@ -16,10 +16,11 @@
   "scripts": {
     "start": "yarn watch:dev",
     "test": "BABEL_ENV=production ./node_modules/.bin/jest",
-    "flow": "./node_modules/.bin/flow",
-    "watch:dev": "./node_modules/.bin/webpack-dev-server --env=development --progress --profile --colors",
+    "flow": "flow",
+    "watch:dev": "webpack-dev-server --env=development --progress --profile --colors",
     "start:prod": "node ./server",
-    "build:prod": "./node_modules/.bin/webpack --env=production --progress --profile --colors"
+    "postinstall": "yarn build:prod",
+    "build:prod": "webpack --env=production --progress --profile --colors"
   },
   "browserslist": [
     "last 3 Chrome versions"
@@ -55,6 +56,7 @@
   "dependencies": {
     "compression": "^1.6.2",
     "express": "^4.15.2",
+    "foreman": "^2.0.0",
     "path": "^0.12.7",
     "polished": "^1.0.0",
     "react": "^15.3.2",
