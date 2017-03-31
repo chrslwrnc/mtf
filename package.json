@@ -53,6 +53,9 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "compression": "^1.6.2",
+    "express": "^4.15.2",
+    "path": "^0.12.7",
     "polished": "^1.0.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
