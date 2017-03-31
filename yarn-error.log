@@ -1,14 +1,14 @@
 Arguments: 
-  /Users/chrislawrence/.nvm/versions/node/v6.2.2/bin/node /usr/local/bin/yarn start
+  /Users/chrislawrence/.nvm/versions/node/v7.4.0/bin/node /usr/local/bin/yarn start
 
 PATH: 
-  /Users/chrislawrence/.gcloud/platform/google_appengine:/Users/chrislawrence/.gcloud/bin:/Users/chrislawrence/.nvm/versions/node/v6.2.2/bin:/Users/chrislawrence/.rvm/gems/ruby-2.1.1/bin:/Users/chrislawrence/.rvm/gems/ruby-2.1.1@global/bin:/Users/chrislawrence/.rvm/rubies/ruby-2.1.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/chrislawrence/.rvm/bin:/bin:/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+  /Users/chrislawrence/.nvm/versions/node/v7.4.0/bin:/Users/chrislawrence/.gcloud/platform/google_appengine:/Users/chrislawrence/.gcloud/bin:/Users/chrislawrence/.rvm/gems/ruby-2.1.1/bin:/Users/chrislawrence/.rvm/gems/ruby-2.1.1@global/bin:/Users/chrislawrence/.rvm/rubies/ruby-2.1.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/chrislawrence/.rvm/bin:/bin:/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 
 Yarn version: 
   0.16.1
 
 Node version: 
-  6.2.2
+  7.4.0
 
 Platform: 
   darwin x64
@@ -30,9 +30,10 @@ npm manifest:
       }
     },
     "scripts": {
-      "start": "webpack-dev-server",
+      "start": "webpack-dev-server --env=development --progress --profile --colors",
       "test": "./node_modules/.bin/jest",
       "flow": "./node_modules/.bin/flow",
+      "build:prod": "webpack --env=production --progress --profile --colors",
     },
     "browserslist": [
       "last 3 Chrome versions"
@@ -58,7 +59,7 @@ npm manifest:
       "html-webpack-plugin": "^2.28.0",
       "jest": "^18.1.0",
       "opn-cli": "^3.1.0",
-      "react-hot-loader": "^1.3.1",
+      "react-hot-loader": "next",
       "react-test-renderer": "^15.4.2",
       "webpack": "^2.3.2",
       "webpack-dev-server": "^2.4.2"
@@ -1040,7 +1041,7 @@ Lockfile:
       core-js "^2.4.0"
       regenerator-runtime "^0.10.0"
   
-  babel-template@^6.16.0, babel-template@^6.22.0, babel-template@^6.23.0:
+  babel-template@^6.16.0, babel-template@^6.22.0, babel-template@^6.23.0, babel-template@^6.7.0:
     version "6.23.0"
     resolved "https://registry.yarnpkg.com/babel-template/-/babel-template-6.23.0.tgz#04d4f270adbb3aa704a8143ae26faa529238e638"
     dependencies:
@@ -1740,6 +1741,10 @@ Lockfile:
       domelementtype "~1.1.1"
       entities "~1.1.1"
   
+  dom-walk@^0.1.0:
+    version "0.1.1"
+    resolved "https://registry.yarnpkg.com/dom-walk/-/dom-walk-0.1.1.tgz#672226dc74c8f799ad35307df936aba11acd6018"
+  
   domain-browser@^1.1.1:
     version "1.1.7"
     resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.1.7.tgz#867aa4b093faa05f1de08c06f4d7b21fdf8698bc"
@@ -1831,6 +1836,12 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/error-ex/-/error-ex-1.3.1.tgz#f855a86ce61adc4e8621c3cda21e7a7612c3a8dc"
     dependencies:
       is-arrayish "^0.2.1"
+  
+  error-stack-parser@^1.3.6:
+    version "1.3.6"
+    resolved "https://registry.yarnpkg.com/error-stack-parser/-/error-stack-parser-1.3.6.tgz#e0e73b93e417138d1cd7c0b746b1a4a14854c292"
+    dependencies:
+      stackframe "^0.3.1"
   
   es-abstract@^1.7.0:
     version "1.7.0"
@@ -2419,6 +2430,13 @@ Lockfile:
       minimatch "^3.0.2"
       once "^1.3.0"
       path-is-absolute "^1.0.0"
+  
+  global@^4.3.0:
+    version "4.3.1"
+    resolved "https://registry.yarnpkg.com/global/-/global-4.3.1.tgz#5f757908c7cbabce54f386ae440e11e26b7916df"
+    dependencies:
+      min-document "^2.19.0"
+      process "~0.5.1"
   
   globals@^9.0.0, globals@^9.14.0:
     version "9.16.0"
@@ -3399,7 +3417,7 @@ Lockfile:
     version "4.6.0"
     resolved "https://registry.yarnpkg.com/lodash.pickby/-/lodash.pickby-4.6.0.tgz#7dea21d8c18d7703a27c704c15d3b84a67e33aff"
   
-  lodash@^4.0.0, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.2.0, lodash@^4.3.0:
+  lodash@^4.0.0, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.6.1:
     version "4.17.4"
     resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
   
@@ -3534,6 +3552,12 @@ Lockfile:
   mime@^1.3.4, mime@1.3.4:
     version "1.3.4"
     resolved "https://registry.yarnpkg.com/mime/-/mime-1.3.4.tgz#115f9e3b6b3daf2959983cb38f149a2d40eb5d53"
+  
+  min-document@^2.19.0:
+    version "2.19.0"
+    resolved "https://registry.yarnpkg.com/min-document/-/min-document-2.19.0.tgz#7bd282e3f5842ed295bb748cdd9f1ffa2c824685"
+    dependencies:
+      dom-walk "^0.1.0"
   
   minimalistic-assert@^1.0.0:
     version "1.0.0"
@@ -4009,6 +4033,10 @@ Lockfile:
     version "0.11.9"
     resolved "https://registry.yarnpkg.com/process/-/process-0.11.9.tgz#7bd5ad21aa6253e7da8682264f1e11d11c0318c1"
   
+  process@~0.5.1:
+    version "0.5.2"
+    resolved "https://registry.yarnpkg.com/process/-/process-0.5.2.tgz#1638d8a8e34c2f440a91db95ab9aeb677fc185cf"
+  
   progress@^1.1.8:
     version "1.1.8"
     resolved "https://registry.yarnpkg.com/progress/-/progress-1.1.8.tgz#e260c78f6161cdd9b0e56cc3e0a85de17c7a57be"
@@ -4103,6 +4131,10 @@ Lockfile:
       minimist "^1.2.0"
       strip-json-comments "~2.0.1"
   
+  react-deep-force-update@^2.0.1:
+    version "2.0.1"
+    resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-2.0.1.tgz#4f7f6c12c3e7de42f345992a3c518236fa1ecad3"
+  
   react-dom@^15.3.2:
     version "15.4.2"
     resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.4.2.tgz#015363f05b0a1fd52ae9efdd3a0060d90695208f"
@@ -4111,16 +4143,22 @@ Lockfile:
       loose-envify "^1.1.0"
       object-assign "^4.1.0"
   
-  react-hot-api@^0.4.5:
-    version "0.4.7"
-    resolved "https://registry.yarnpkg.com/react-hot-api/-/react-hot-api-0.4.7.tgz#a7e22a56d252e11abd9366b61264cf4492c58171"
-  
-  react-hot-loader:
-    version "1.3.1"
-    resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-1.3.1.tgz#c95647ae78b73dfceff6ec71ffcb04182ff6daf9"
+  react-hot-loader@next:
+    version "3.0.0-beta.6"
+    resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-3.0.0-beta.6.tgz#463fac0bfc8b63a8385258af20c91636abce75f4"
     dependencies:
-      react-hot-api "^0.4.5"
+      babel-template "^6.7.0"
+      global "^4.3.0"
+      react-deep-force-update "^2.0.1"
+      react-proxy "^3.0.0-alpha.0"
+      redbox-react "^1.2.5"
       source-map "^0.4.4"
+  
+  react-proxy@^3.0.0-alpha.0:
+    version "3.0.0-alpha.1"
+    resolved "https://registry.yarnpkg.com/react-proxy/-/react-proxy-3.0.0-alpha.1.tgz#4400426bcfa80caa6724c7755695315209fa4b07"
+    dependencies:
+      lodash "^4.6.1"
   
   react-test-renderer@^15.4.2:
     version "15.4.2"
@@ -4207,6 +4245,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/rechoir/-/rechoir-0.6.2.tgz#85204b54dba82d5742e28c96756ef43af50e3384"
     dependencies:
       resolve "^1.1.6"
+  
+  redbox-react@^1.2.5:
+    version "1.3.4"
+    resolved "https://registry.yarnpkg.com/redbox-react/-/redbox-react-1.3.4.tgz#3d882bb62cc7c8f6256279d12f05c6a5a96d24c6"
+    dependencies:
+      error-stack-parser "^1.3.6"
+      object-assign "^4.0.1"
   
   redent@^1.0.0:
     version "1.0.0"
@@ -4606,6 +4651,10 @@ Lockfile:
       jodid25519 "^1.0.0"
       jsbn "~0.1.0"
       tweetnacl "~0.14.0"
+  
+  stackframe@^0.3.1:
+    version "0.3.1"
+    resolved "https://registry.yarnpkg.com/stackframe/-/stackframe-0.3.1.tgz#33aa84f1177a5548c8935533cbfeb3420975f5a4"
   
   "statuses@>= 1.3.1 < 2", statuses@~1.3.1:
     version "1.3.1"
@@ -5199,14 +5248,9 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  SyntaxError: /Users/chrislawrence/Projects/mtf/package.json: Unexpected token } in JSON at position 385
-      at Object.parse (native)
+  SyntaxError: /Users/chrislawrence/Projects/mtf/package.json: Unexpected token } in JSON at position 509
+      at JSON.parse (<anonymous>)
       at /usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/lib/util/fs.js:271:57
-      at next (native)
+      at Generator.next (<anonymous>)
       at step (/usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
       at /usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/node_modules/babel-runtime/helpers/asyncToGenerator.js:28:20
-      at run (/usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/node_modules/core-js/library/modules/es6.promise.js:87:22)
-      at /usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/node_modules/core-js/library/modules/es6.promise.js:100:28
-      at flush (/usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/node_modules/core-js/library/modules/_microtask.js:18:9)
-      at _combinedTickCallback (internal/process/next_tick.js:67:7)
-      at process._tickCallback (internal/process/next_tick.js:98:9)

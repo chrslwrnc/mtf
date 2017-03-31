@@ -6,6 +6,8 @@ import Step from './Step';
 
 import * as state from './state.js';
 
+import screenshot from 'assets/wahwah.png';
+
 const validateSteps = (props, propName, componentName) => {
   if (props[propName].length < 2 || props[propName].length > 5)
     return new Error(
@@ -17,10 +19,6 @@ class Stepper extends React.Component {
   static propTypes = {
     steps: validateSteps,
   }
-
-  // static defaultProps = {
-  //   steps: [ 'Design', 'Build', 'Deploy' ],
-  // }
 
   state = {
     current: 0,
@@ -50,6 +48,7 @@ class Stepper extends React.Component {
 
     return (
       <styles.Wrapper>
+        <img src={screenshot} />
         <styles.Bar width={(100 / (steps.length - 1)) * (current)} />
         {steps.map(this.renderStep)}
       </styles.Wrapper>
