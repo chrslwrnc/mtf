@@ -1,4 +1,5 @@
 import { injectGlobal } from 'styled-components';
+// import { stripUnit } from 'polished';
 
 injectGlobal`
   body {
@@ -10,3 +11,5 @@ injectGlobal`
 	  font-smoothing: antialiased;
 	}
 `;
+
+export const COLOR_TERTIARY = 'red';

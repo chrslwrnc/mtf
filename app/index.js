@@ -2,10 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
-import 'style.js';
-import Stepper from 'components/Stepper';
+import App from 'components/App';
 
-const render = (Component, props) => {
+const render = (Component, props = {}) => {
   ReactDOM.render(
     <AppContainer>
       <Component {...props} />
@@ -14,8 +13,8 @@ const render = (Component, props) => {
   )
 }
 
-render(Stepper, { steps: [ 'Design', 'Build', 'Deploy' ] });
+render(App);
 
 if (module.hot) {
-  module.hot.accept('components/Stepper', () => { render(Stepper, { steps: [ 'Design', 'Build', 'Deploy' ] }) })
+  module.hot.accept('components/App', () => { render(App) })
 }
