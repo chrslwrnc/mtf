@@ -1,5 +1,6 @@
 import { injectGlobal } from 'styled-components';
-// import { stripUnit } from 'polished';
+
+export const COLOR_TERTIARY = '#80cbc4';
 
 injectGlobal`
   body {
@@ -10,6 +11,14 @@ injectGlobal`
 	  margin: 10%;
 	  font-smoothing: antialiased;
 	}
+
+	* {
+		box-sizing: border-box;
+
+		&::selection {
+			color: white;
+			background-color: ${COLOR_TERTIARY}
+		}
+	}
 `;
 
-export const COLOR_TERTIARY = 'red';

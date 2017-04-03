@@ -20,7 +20,9 @@
     "watch:dev": "webpack-dev-server --env=development --progress --profile --colors",
     "start:prod": "node ./server",
     "postinstall": "yarn build:prod",
-    "build:prod": "webpack --env=production --progress --profile --colors"
+    "build:prod": "webpack --env=production --progress --profile --colors",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "browserslist": [
     "last 3 Chrome versions"
@@ -34,9 +36,11 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-react": "^6.8.0",
     "flow-bin": "^0.39.0",
+    "getstorybook": "^1.7.0",
     "jest": "^18.1.0",
     "react-test-renderer": "^15.4.2",
-    "webpack-dev-server": "^2.4.2"
+    "webpack-dev-server": "^2.4.2",
+    "@kadira/storybook": "^2.21.0"
   },
   "dependencies": {
     "babel-core": "^6.24.0",
@@ -54,6 +58,7 @@
     "html-webpack-plugin": "^2.28.0",
     "path": "^0.12.7",
     "polished": "^1.0.0",
+    "ramda": "^0.23.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-hot-loader": "next",

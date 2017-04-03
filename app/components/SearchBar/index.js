@@ -1,14 +1,15 @@
 import React from 'react';
 import Rx from 'rxjs';
+import R from 'ramda';
 
 import { Wrapper, Input } from './styles.js';
 
 import * as state from 'state.js';
 
-const apiUrl = 'https://api.stackexchange.com/2.2/answers?order=desc&sort=activity&site=stackoverflow';
+const apiUrl = 'https://api.stackexchange.com/2.2/search?order=desc&sort=votes&site=stackoverflow&pagesize=1&intitle=';
 const fetchMovies = (query) => Rx.Observable
   .ajax({
-    url: apiUrl,// + query,
+    url: apiUrl + query,
     method: 'GET',
     crossDomain: true
   })
@@ -21,29 +22,18 @@ class SearchBar extends React.Component {
 
   state = {
     query: '',
+    results: [],
   }
 
-  // componentDidMount() {
-  //   const url = 'https://api.stackexchange.com/2.2/answers?order=desc&sort=activity&site=stackoverflow';
-  //   const requestStream = Rx.Observable.of(url);
-  //   const responseStream = requestStream
-  //     .flatMap(requestUrl =>
-  //       Rx.Observable.fromPromise(fetch(requestUrl))
-  //     );
-  //   responseStream.subscribe(response => {
-  //     console.log(response.json());
-  //   });
-  // }
-
-  componentDidMount() {
+  setup = e => {
     const search$ = Rx.Observable
-      .fromEvent(this.input, 'change')
-      .map(({ target }) => target.value)
+      .fromEvent(e, 'keyup')
+      .map(R.path(['target', 'value']))
       .filter(query => query.length > 2)
       .debounceTime(100)
       .distinctUntilChanged()
-      .switchMap(query => fetchMovies(query))
-      // .map(res => res);
+      .switchMap(fetchMovies)
+      .map(R.path(['response', 'items']));
 
     this.sub = search$
       .subscribe(results => {
@@ -77,9 +67,10 @@ class SearchBar extends React.Component {
       <Wrapper>
         <Input
           type="text"
-          ref={e => this.input = e}
+          innerRef={this.setup}
           name="query"
           value={query}
+          placeholder="Search"
           onChange={this.handleChange}
         />
       </Wrapper>
