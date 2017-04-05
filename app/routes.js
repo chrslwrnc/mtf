@@ -4,6 +4,7 @@ const routes = [
   {
     path: '/a/:answerId',
     component: Answer,
+    exact: true,
   },
 ]
 

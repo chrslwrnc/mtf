@@ -1,22 +1,21 @@
 import React from 'react';
 import Rx from 'rxjs';
 
-const withFetchData = (Component, fetch$) => class fetchAnswer {
-	subject = Rx.Subject()
-
+const withFetchData = (Component, fetch$) => class withFetchData {
 	state = {
 		data: {},
 	}
 
 	componentDidMount() {
+		this.subject = Rx.Subject();
+		if (this.props.url) this.subject.onNext(this.props.url);
+
 		const data$ = this.subject
-      .switchMap(fetch$);
+			.switchMap(fetch$);
 
     data$.subscribe((d) => {
 			console.log(d);
     });
-
-		this.subject.onNext(this.props.url);
 	}
 
 	componentWillReceiveProps(nextProps) {

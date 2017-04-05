@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-// import { stripUnit } from 'polished';
 
-import { COLOR_TERTIARY } from 'style.js';
+import * as colors from 'constants/colors.js';
 
 export const Wrapper = styled.form`
   position: fixed;
@@ -10,10 +9,11 @@ export const Wrapper = styled.form`
   transform: translateX(-50%);
   margin: 0;
   padding: 0;
-  border: 2px solid ${props => props.isFocused ? COLOR_TERTIARY : '#ccc'};
+  border: 2px solid ${props => props.isFocused ? colors.TERTIARY : '#ccc'};
   border-radius: 2px;
 	width: 100%;
 	max-width: 680px;
+  box-shadow: 0 0 2em 0.5em white;
 `;
 
 export const Input = styled.input`

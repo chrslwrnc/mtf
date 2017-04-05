@@ -1,6 +1,6 @@
 import { injectGlobal } from 'styled-components';
 
-export const COLOR_TERTIARY = '#607d8b';
+import * as colors from 'constants/colors.js';
 
 injectGlobal`
   body {
@@ -17,7 +17,7 @@ injectGlobal`
 
 		&::selection {
 			color: white;
-			background-color: ${COLOR_TERTIARY}
+			background-color: ${colors.TERTIARY}
 		}
 	}
 `;

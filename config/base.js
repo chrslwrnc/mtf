@@ -11,6 +11,7 @@ module.exports = () => {
     ],
     output: {
       path: DIST_FOLDER,
+      publicPath: '/',
       filename: '[name].js',
       sourceMapFilename: '[name].map',
     },

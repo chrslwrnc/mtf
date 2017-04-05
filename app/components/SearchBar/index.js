@@ -6,7 +6,7 @@ import { Wrapper, Input } from './styles.js';
 
 import * as state from 'state.js';
 
-const questionsUrl = (query) => `https://api.stackexchange.com/2.2/search?pagesize=1&order=desc&sort=votes&intitle=${query}&site=stackoverflow&filter=!-W2e9m3q4RX(k7OzjJSS`;
+const questionsUrl = (query, offset = 1) => `https://api.stackexchange.com/2.2/search?pagesize=1&order=desc&sort=votes&page=${offset}&intitle=${query}&site=stackoverflow&filter=!-W2e9m3q4RX(k7OzjJSS`;
 const fetchQuestions = (query) => Rx.Observable
   .ajax({
     url: questionsUrl(query),
@@ -39,14 +39,14 @@ class SearchBar extends React.Component {
       .debounceTime(100)
       .distinctUntilChanged()
       .switchMap(fetchQuestions)
-      .map(R.path(['response', 'items', 0, 'accepted_answer_id']))
+      .map(R.path(['response', 'items', 0, 'accepted_answer_id']));
 
     this.sub = question$
       .subscribe(this.navigateToAnswer);
   }
 
   navigateToAnswer = (id) => {
-    this.context.router.transitionTo(`/a/${id}`)
+    if (id) this.context.router.history.push(`/a/${id}`);
   }
 
   handleFocus = () => {
@@ -61,13 +61,17 @@ class SearchBar extends React.Component {
     this.setState(state.update(e.target.name, e.target.value));
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
   componentWillUnmount() {
-    // this.sub.unsubscribe();
+    this.sub.unsubscribe();
   }
 
   render() {
     return (
-      <Wrapper isFocused={this.state.isFocused}>
+      <Wrapper onSubmit={this.handleSubmit} isFocused={this.state.isFocused}>
         <Input
           type="text"
           innerRef={this.setup}

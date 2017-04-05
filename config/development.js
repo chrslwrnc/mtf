@@ -21,8 +21,9 @@ module.exports = (env) => {
     devtool: 'inline-source-map',
     devServer: {
       hot: true,
-      contentBase: DIST_FOLDER,
-      publicPath: '/',
+      historyApiFallback: true,
+      // contentBase: DIST_FOLDER,
+      // publicPath: DIST_FOLDER,
     },
   }, commonConfig());
 }

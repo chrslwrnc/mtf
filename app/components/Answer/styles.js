@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-// import { stripUnit } from 'polished';
 
-import { COLOR_TERTIARY } from 'style.js';
+import * as colors from 'constants/colors.js';
 
 export const Wrapper = styled.div`
   margin: 20vh auto;
@@ -22,10 +21,11 @@ export const Body = styled.div`
 
 	img {
 		display: block;
+		max-width: 100%;
 	}
 
 	a {
-		color: ${COLOR_TERTIARY};
+		color: ${colors.TERTIARY};
 		text-decoration: none;
 		border-bottom: 1px solid currentColor;
 	}
