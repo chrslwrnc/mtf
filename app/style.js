@@ -1,14 +1,14 @@
 import { injectGlobal } from 'styled-components';
 
-export const COLOR_TERTIARY = '#80cbc4';
+export const COLOR_TERTIARY = '#607d8b';
 
 injectGlobal`
   body {
   	background-color: white;
 	  color: black;
-	  font-family: Arial;
+	  font-family: 'Muli', 'Open Sans', Arial;
 	  font-size: 100%;
-	  margin: 10%;
+	  margin: 0;
 	  font-smoothing: antialiased;
 	}
 

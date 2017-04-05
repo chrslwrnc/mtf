@@ -6,72 +6,75 @@ import { Wrapper, Input } from './styles.js';
 
 import * as state from 'state.js';
 
-const apiUrl = 'https://api.stackexchange.com/2.2/search?order=desc&sort=votes&site=stackoverflow&pagesize=1&intitle=';
-const fetchMovies = (query) => Rx.Observable
+const questionsUrl = (query) => `https://api.stackexchange.com/2.2/search?pagesize=1&order=desc&sort=votes&intitle=${query}&site=stackoverflow&filter=!-W2e9m3q4RX(k7OzjJSS`;
+const fetchQuestions = (query) => Rx.Observable
   .ajax({
-    url: apiUrl + query,
+    url: questionsUrl(query),
     method: 'GET',
-    crossDomain: true
+    crossDomain: true,
   })
   .retry(3);
 
 class SearchBar extends React.Component {
-  // static propTypes = {
-  //   steps: validateSteps,
-  // }
+  static propTypes = {
+    setAnswer: React.PropTypes.func,
+  }
+
+  static contextTypes = {
+    router: React.PropTypes.object,
+  }
 
   state = {
+    isFocused: false,
     query: '',
-    results: [],
   }
 
   setup = e => {
-    const search$ = Rx.Observable
+    e.focus();
+
+    const question$ = Rx.Observable
       .fromEvent(e, 'keyup')
       .map(R.path(['target', 'value']))
       .filter(query => query.length > 2)
       .debounceTime(100)
       .distinctUntilChanged()
-      .switchMap(fetchMovies)
-      .map(R.path(['response', 'items']));
+      .switchMap(fetchQuestions)
+      .map(R.path(['response', 'items', 0, 'accepted_answer_id']))
 
-    this.sub = search$
-      .subscribe(results => {
-        console.log(results);
-        // this.setState({ results });
-      });
+    this.sub = question$
+      .subscribe(this.navigateToAnswer);
   }
 
-  componentWillUnmount() {
-    this.sub.unsubscribe();
+  navigateToAnswer = (id) => {
+    this.context.router.transitionTo(`/a/${id}`)
+  }
+
+  handleFocus = () => {
+    this.setState(state.update('isFocused', true));
+  }
+
+  handleBlur = () => {
+    this.setState(state.update('isFocused', false));
   }
 
   handleChange = (e) => {
     this.setState(state.update(e.target.name, e.target.value));
   }
 
-  // renderStep = (label, i) => (
-  //   <Step
-  //     key={i}
-  //     selected={(this.state.current) > (i - 1)}
-  //     label={label}
-  //     onClick={() => this.handleClickStep(i)}
-  //   />
-  // );
+  componentWillUnmount() {
+    // this.sub.unsubscribe();
+  }
 
   render() {
-    // const { steps } = this.props;
-    const { query } = this.state;
-
     return (
-      <Wrapper>
+      <Wrapper isFocused={this.state.isFocused}>
         <Input
           type="text"
           innerRef={this.setup}
           name="query"
-          value={query}
           placeholder="Search"
-          onChange={this.handleChange}
+          onFocus={this.handleFocus}
+          onBlur={this.handleBlur}
         />
       </Wrapper>
     );
